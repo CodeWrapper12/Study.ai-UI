@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+body { @apply bg-ink text-paper font-body antialiased; }
+
+/* departures-board signature */
+.board {
+  @apply bg-board border border-edge rounded-lg;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(255,255,255,0.018) 30px, rgba(255,255,255,0.018) 31px);
+}
+.board-row { @apply font-mono text-amber tracking-wider; text-shadow: 0 0 14px rgba(255,181,71,.35); }
+.flap { animation: flap .35s steps(2) both; }
+@keyframes flap { 0% { transform: rotateX(80deg); opacity: .2 } 100% { transform: rotateX(0); opacity: 1 } }
+@media (prefers-reduced-motion: reduce) { .flap { animation: none } }
+
+.btn { @apply inline-flex items-center justify-center gap-2 rounded font-mono text-sm tracking-wide px-4 py-2 border transition-colors; }
+.btn-amber { @apply btn bg-amber text-board border-amber hover:bg-amber/90 font-semibold; }
+.btn-ghost { @apply btn bg-transparent text-paper border-edge hover:border-haze; }
+.btn-green { @apply btn bg-radar/15 text-radar border-radar/40 hover:bg-radar/25; }
+.input { @apply w-full bg-board border border-edge rounded px-3 py-2 text-paper placeholder-haze/60 focus:outline-none focus:border-amber/70; }
+.label { @apply block font-mono text-xs uppercase tracking-widest text-haze mb-1; }
+.card { @apply bg-panel border border-edge rounded-lg; }
+.tag { @apply inline-block font-mono text-[11px] uppercase tracking-widest px-2 py-0.5 rounded border; }
+
+/* markdown */
+.md { @apply leading-relaxed; }
+.md h1 { @apply font-display text-3xl mt-2 mb-4 text-paper; }
+.md h2 { @apply font-display text-2xl mt-8 mb-3 text-amber; }
+.md h3 { @apply font-display text-xl mt-6 mb-2 text-paper; }
+.md p { @apply my-3 text-paper/90; }
+.md a { @apply text-sky underline underline-offset-2; }
+.md ul { @apply list-disc pl-6 my-3 space-y-1; }
+.md ol { @apply list-decimal pl-6 my-3 space-y-1; }
+.md li { @apply text-paper/90; }
+.md blockquote { @apply border-l-2 border-amber/60 bg-board/60 px-4 py-2 my-4 text-haze rounded-r; }
+.md code { @apply font-mono text-[0.9em] bg-board px-1.5 py-0.5 rounded text-radar; }
+.md pre { @apply bg-board border border-edge rounded-lg p-4 my-4 overflow-x-auto; }
+.md pre code { @apply bg-transparent p-0 text-paper/90; }
+.md table { @apply w-full my-4 text-sm; }
+.md th { @apply text-left font-mono text-xs uppercase tracking-wider text-haze border-b border-edge px-2 py-2; }
+.md td { @apply border-b border-edge/50 px-2 py-2 align-top; }
+.md hr { @apply border-edge my-8; }
+.md input[type="checkbox"] { @apply mr-2 accent-radar; }
+
+::selection { background: rgba(255,181,71,.3); }
